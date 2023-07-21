@@ -37,7 +37,7 @@ FROM (
     FROM vw_principale_tel_mobile p
     LEFT JOIN vw_shooted_table s
     ON p.tel_mobile = s.tel_mobile
-    WHERE  left(p.zipcode,2) in (select left(zipcode,2) from geo_variables)
+    WHERE  left(p.zipcode,5) in (select left(zipcode,5) from geo_variables)
     AND p.tel_mobile is not null
     AND DATEDIFF(day,to_date(shooted_audio,'YYYY-MM-DD'),current_date) > <nombrejourpashootee>
     AND DATEDIFF(year,birthday_norm,current_date) between (select age_min from ext_variables) and (select age_max from ext_variables)
@@ -76,7 +76,7 @@ FROM (
     on p.tel_mobile = s.tel_mobile
     WHERE
     shooted_tout is NULL
-    and left(p.zipcode,2) in (select left(zipcode,2) from geo_variables)
+    and left(p.zipcode,5) in (select left(zipcode,5) from geo_variables)
    AND DATEDIFF(year,birthday_norm,current_date) between (select age_min from ext_variables) and (select age_max from ext_variables)
     AND p.tel_mobile is not null
     and boost = '0'
@@ -111,7 +111,7 @@ FROM (
     on p.tel_mobile = s.tel_mobile
     WHERE  ((shooted_sante is NULL and shooted_tout is not null) or (shooted_audio is null and shooted_tout is not null))
     AND DATEDIFF(year,birthday_norm,current_date) between (select age_min from ext_variables) and (select age_max from ext_variables)
-    and left(p.zipcode,2) in (select left(zipcode,2) from geo_variables)
+    and left(p.zipcode,5) in (select left(zipcode,5) from geo_variables)
     and DATEDIFF(day,TO_DATE(shooted_tout,'YYYY-MM-DD'),current_date) > 15
     AND p.tel_mobile is not null
     and boost = '0'
@@ -145,7 +145,7 @@ FROM (
     LEFT JOIN vw_shooted_table s
     on p.tel_mobile = s.tel_mobile
     WHERE shooted_sante is not null
-    and left(p.zipcode,2) in (select left(zipcode,2) from geo_variables)
+    and left(p.zipcode,5) in (select left(zipcode,5) from geo_variables)
     AND DATEDIFF(year,birthday_norm,current_date) between (select age_min from ext_variables) and (select age_max from ext_variables)
     AND p.tel_mobile is not null
     AND DATEDIFF(day,to_date(shooted_audio,'YYYY-MM-DD'),current_date) > <nombrejourpashootee>
