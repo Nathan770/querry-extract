@@ -32,7 +32,7 @@ FROM (
     LEFT JOIN vw_shooted_table s
     ON p.tel_mobile = s.tel_mobile
     WHERE  p.tel_mobile is not null
-    --AND (DATEDIFF(year,birthday_norm,current_date) between 25 and 55 or birthday_norm is null)
+    --AND (DATEDIFF(year,birthday_norm,current_date) between <cpfagemin> and <cpfagemax> or birthday_norm is null)
     AND LEFT(p.tel_mobile,7) not in (select LEFT(tranche_debut,7) from dim_operateurs where code_operateur in ('LYCA','LEFR','NRJ'))
     and boost = '1'
     AND day_lead > <day_lead_min>
