@@ -144,7 +144,7 @@ FROM (
     and DATEDIFF(day,TO_DATE(shooted_tout,'YYYY-MM-DD'),current_date) > 15 
     AND LEFT(p.tel_mobile,7) not in (select LEFT(tranche_debut,7) from dim_operateurs where code_operateur in ('LYCA','LEFR','NRJ'))
     GROUP BY p.tel_mobile,shooted_cpf)
-    WHERE rn <= (select volume_extract from ext_variables) - (select count() from CPF_NON_SHOOTE) - (SELECT COUNT() FROM NON_SHOOTE) - (SELECT COUNT(*) FROM P_BOOST))
+    WHERE rn <= (select volume_extract from ext_variables) - (select count(*) from CPF_NON_SHOOTE) - (SELECT COUNT(*) FROM NON_SHOOTE) - (SELECT COUNT(*) FROM P_BOOST))
 
 
 -- Pour verif (avec cohortes)
