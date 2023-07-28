@@ -203,4 +203,4 @@ Null as code,
 zipcode,
 Null as utm,
 cohort
-FROM CAMPAGNE_SHOOTE"""
+FROM CAMPAGNE_SHOOTE
